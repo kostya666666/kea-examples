@@ -14,7 +14,7 @@ const githubSearchStore = kea({
   }),
   reducers: ({ actions }) => ({
     username: [
-      "",
+      "keajs",
       PropTypes.string,
       {
         [actions.setUsername]: (_, payload) => payload.username
@@ -46,6 +46,11 @@ const githubSearchStore = kea({
       }
     ]
   }),
+  start: function*() {
+    const { setUsername } = this.actions;
+    const username = yield this.get("username");
+    yield put(setUsername(username));
+  },
   takeLatest: ({ actions, workers }) => ({
     [actions.setUsername]: workers.fetchRepositories
   }),
@@ -67,7 +72,15 @@ const githubSearchStore = kea({
         yield put(setFetchError(json.message));
       }
     }
-  }
+  },
+  selectors: ({ selectors }) => ({
+    sortedRepositories: [
+      () => [selectors.repositories],
+      repositories =>
+        repositories.sort((a, b) => b.stargazers_count - a.stargazers_count),
+      PropTypes.array
+    ]
+  })
 });
 
 export default githubSearchStore;

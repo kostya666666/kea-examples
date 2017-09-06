@@ -9,11 +9,11 @@ const displayLoadingState = branch(
   renderComponent(Loading)
 );
 
-const ReposPure = ({ repositories, username, error }) =>
-  repositories.length > 0
+const ReposPure = ({ sortedRepositories, username, error }) =>
+  sortedRepositories.length > 0
     ? <div>
-        Found {repositories.length} repositories for user {username}!
-        {repositories.map(repo =>
+        Found {sortedRepositories.length} sortedRepositories for user {username}!
+        {sortedRepositories.map(repo =>
           <div key={repo.id}>
             <a href={repo.html_url}>{repo.full_name}</a>
             {" - "}
