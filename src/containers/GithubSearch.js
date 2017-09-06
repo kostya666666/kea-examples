@@ -1,7 +1,7 @@
 import React from "react";
 import { pure, branch, renderComponent, compose } from "recompose";
 
-import githubSeachStore from "../store/githubSearchStore";
+import githubSearchStore from "../store/githubSearchStore";
 
 const Loading = () => <div>Loading</div>;
 const displayLoadingState = branch(
@@ -25,7 +25,7 @@ const ReposPure = ({ sortedRepositories, username, error }) =>
         {error ? `Error: ${error}` : "No repositories found"}
       </div>;
 
-const Repos = compose(githubSeachStore, displayLoadingState, pure)(ReposPure);
+const Repos = compose(githubSearchStore, displayLoadingState, pure)(ReposPure);
 
 const GithubSearchPure = ({ username, actions: { setUsername } }) =>
   <div>
@@ -42,5 +42,5 @@ const GithubSearchPure = ({ username, actions: { setUsername } }) =>
     </div>
   </div>;
 
-const GithubSearch = compose(githubSeachStore, pure)(GithubSearchPure);
+const GithubSearch = compose(githubSearchStore, pure)(GithubSearchPure);
 export default GithubSearch;
