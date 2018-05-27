@@ -46,7 +46,7 @@ const githubSearchStore = kea({
       }
     ]
   }),
-  start: function*() {
+  *start() {
     const { setUsername } = this.actions;
     const username = yield this.get("username");
     yield put(setUsername(username));

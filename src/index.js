@@ -5,11 +5,12 @@ import { Provider } from "react-redux";
 import store from "./store";
 // import CounterSingletonScene from "./components/counterSingletonScene";
 // import Slider from "./containers/Slider";
-import GithubSearch from "./containers/GithubSearch";
+// import GithubSearch from "./containers/GithubSearch";
+import ProjectSetter from "./containers/ProjectSetter";
 
 ReactDOM.render(
   <Provider store={store}>
-    <GithubSearch />
+    <ProjectSetter />
   </Provider>,
   document.getElementById("app")
 );
